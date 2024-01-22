@@ -1,7 +1,14 @@
 package com.ecommerce.backend.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private Integer id;
     private String username;
@@ -13,5 +20,5 @@ public class User {
     private String password;
     private UserType userType;
     private LocalDateTime dataCreated;
-    
+
 }
