@@ -19,6 +19,5 @@ public class User {
     private String cellphone;
     private String password;
     private UserType userType;
-    private LocalDateTime dataCreated;
-
+    private LocalDateTime dateCreated;
 }
