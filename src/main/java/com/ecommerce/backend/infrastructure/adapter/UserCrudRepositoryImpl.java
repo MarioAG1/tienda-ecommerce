@@ -6,19 +6,18 @@ import com.ecommerce.backend.infrastructure.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class IUserCrudRepositoryImpl implements IUserRepository {
-
+public class UserCrudRepositoryImpl implements IUserRepository {
     private final IUserCrudRepository iUserCrudRepository;
     private final UserMapper userMapper;
 
-    public IUserCrudRepositoryImpl(IUserCrudRepository iUserCrudRepository, UserMapper userMapper) {
+    public UserCrudRepositoryImpl(IUserCrudRepository iUserCrudRepository, UserMapper userMapper) {
         this.iUserCrudRepository = iUserCrudRepository;
         this.userMapper = userMapper;
     }
 
     @Override
     public User save(User user) {
-        return userMapper.toUser(iUserCrudRepository.save(userMapper.toUserEntity(user)));
+        return userMapper.toUser(iUserCrudRepository.save( userMapper.toUserEntity(user) ));
     }
 
     @Override
@@ -28,6 +27,7 @@ public class IUserCrudRepositoryImpl implements IUserRepository {
 
     @Override
     public User findById(Integer id) {
-        return userMapper.toUser(iUserCrudRepository.findById(id).get());
+        return  userMapper.toUser(iUserCrudRepository.findById(id).get());
     }
 }
+
