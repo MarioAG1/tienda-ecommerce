@@ -2,17 +2,20 @@ package com.ecommerce.backend.infrastructure.adapter;
 
 import com.ecommerce.backend.domain.model.Category;
 import com.ecommerce.backend.domain.port.ICategoryRepository;
+import com.ecommerce.backend.infrastructure.entity.CategoryEntity;
 import com.ecommerce.backend.infrastructure.mapper.CategoryMapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class CategoryCrudRepositoryImpl implements ICategoryRepository {
     private final ICategoryCrudRepository iCategoryCrudRepository;
     private final CategoryMapper categoryMapper;
 
-    public CategoryCrudRepositoryImpl(ICategoryCrudRepository iCategoryCrudRepository, CategoryMapper categotyMapper) {
+    public CategoryCrudRepositoryImpl(ICategoryCrudRepository iCategoryCrudRepository, CategoryMapper categoryMapper) {
         this.iCategoryCrudRepository = iCategoryCrudRepository;
-        this.categoryMapper = categotyMapper;
+        this.categoryMapper = categoryMapper;
     }
 
     @Override
@@ -27,11 +30,20 @@ public class CategoryCrudRepositoryImpl implements ICategoryRepository {
 
     @Override
     public Category findById(Integer id) {
-        return categoryMapper.toCategory(iCategoryCrudRepository.findById(id).get());
+        Optional<CategoryEntity> categoryOptional = iCategoryCrudRepository.findById(id);
+        if (categoryOptional.isPresent()) {
+            return categoryMapper.toCategory(categoryOptional.get());
+        } else {
+            throw new RuntimeException("Categoria con id: " + id + " no existe");
+        }
     }
 
     @Override
     public void deleteById(Integer id) {
+        Optional<CategoryEntity> categoryOptional = iCategoryCrudRepository.findById(id);
+        if (categoryOptional.isEmpty()) {
+            throw new RuntimeException("Categoria con id: " + id + " no existe");
+        }
         iCategoryCrudRepository.deleteById(id);
     }
 }

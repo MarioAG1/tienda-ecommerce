@@ -17,8 +17,8 @@ public class Product {
     private String description;
     private String urlImage;
     private BigDecimal price;
-    private LocalDateTime dataCreated;
-    private LocalDateTime dataUpdated;
+    private LocalDateTime dateCreated;
+    private LocalDateTime dateUpdated;
     private Integer userId;
     private Integer categoryId;
 }
