@@ -19,7 +19,7 @@ public interface IOrderMapper {
                     @Mapping(source = "userEntity.id", target = "userId"),
             }
     )
-    Order order(OrderEntity orderEntity);
+    Order toOrder(OrderEntity orderEntity);
     Iterable<Order> toOrderList(Iterable<OrderEntity> orderEntities);
     @InheritInverseConfiguration
     OrderEntity toOrderEntity(Order order);
