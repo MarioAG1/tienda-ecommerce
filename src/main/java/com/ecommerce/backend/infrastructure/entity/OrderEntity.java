@@ -4,6 +4,7 @@ package com.ecommerce.backend.infrastructure.entity;
 import com.ecommerce.backend.domain.model.OrderState;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Data
+@NoArgsConstructor
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
