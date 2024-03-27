@@ -31,7 +31,7 @@ public class OrderController {
     @PostMapping("/update/state/order")
     public ResponseEntity updateStateById(@RequestParam Integer id, @RequestParam String state) {
         orderService.updateStateById(id,state);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().build(); 
     }
 
     @GetMapping
